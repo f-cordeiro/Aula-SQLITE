@@ -23,20 +23,30 @@ cursor = conexao.cursor()
 
 
 # Inserir vários alunos de uma vez 
-alunos = [
-    ("Yago", 28, "Direito"),
-    ("Jessica", 24, "Computação"),
-    ("Breno", 28, "Computaria"),
-]
+# alunos = [
+#     ("Yago", 28, "Direito"),
+#     ("Jessica", 24, "Computação"),
+#     ("Breno", 28, "Computaria"),
+# ]
 
-# Inserir um dado na tabela - executemany serve para add vairos
-cursor.executemany("""
-INSERT INTO alunos (nome, idade, curso)
-VALUES (?, ?, ?)
-""",
+# # Inserir um dado na tabela - executemany serve para add vairos
+# cursor.executemany("""
+# INSERT INTO alunos (nome, idade, curso)
+# VALUES (?, ?, ?)
+# """,
 
-(alunos)
+# (alunos)
+# )
+
+# #Confirmar as alterações no banco
+# conexao.commit()
+
+
+#atualizar dados no banco
+cursor.execute("""
+UPDATE alunos
+SET idade = ?, curso = ?
+WHERE id = ?
+""",(61, "Medicina", 3)
 )
-
-#Confirmar as alterações no banco
 conexao.commit()
